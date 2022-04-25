@@ -1,21 +1,14 @@
 package com.example.mashu.usecase.createBoard;
 
 import com.example.mashu.TestAxonConfig;
-import com.example.mashu.event.FakeEventHandler;
 import com.example.mashu.usecase.repository.AxonBoardRepository;
-import org.axonframework.config.DefaultConfigurer;
-import org.axonframework.eventhandling.EventBus;
-import org.axonframework.eventhandling.SimpleEventBus;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.xml.crypto.dsig.SignatureMethod;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -45,10 +38,7 @@ public class AxonCreateBoardUseCaseTest extends TestAxonConfig {
   public void createBoard() {
     AxonBoardRepository repo = new AxonBoardRepository();
 
-//    EventBus eventBus = SimpleEventBus.builder().build();
     System.out.println(simpleEventBus.getClass().getSimpleName());
-
-//    DefaultConfigurer.defaultConfiguration().configureEventBus(configuration -> eventBus).start();
 
 //    FakeEventListener listener = new FakeEventListener();
 //    eventBus.subscribe(listener);
@@ -69,14 +59,10 @@ public class AxonCreateBoardUseCaseTest extends TestAxonConfig {
     assertNotNull(output.getBoardId());
     assertTrue(repo.getBoardById(output.getBoardId()).isPresent());
 
-//    assertNotNull(listener.createdBoardId);
-//    assertEquals(1, listener.counter);
-
 //    assertNotNull(listener2.createdBoardId);
 //    assertEquals(1, listener2.counter);
 
-//    assertNotNull(fakeEventHandler.createdBoardId);
+    assertNotNull(fakeEventHandler.createdBoardId);
     assertEquals(1, fakeEventHandler.counter);
-    System.out.println(fakeEventHandler.counter);
   }
 }
