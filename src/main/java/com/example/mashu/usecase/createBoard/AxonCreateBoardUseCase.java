@@ -2,7 +2,6 @@ package com.example.mashu.usecase.createBoard;
 
 import com.example.mashu.entity.NewAxonBoard;
 import com.example.mashu.event.AxonBoardCreatedEvent;
-import com.example.mashu.event.BoardCreatedEvent;
 import com.example.mashu.event.DomainEvent;
 import com.example.mashu.usecase.repository.AxonBoardRepository;
 import jdk.jfr.Event;
@@ -40,7 +39,7 @@ public class AxonCreateBoardUseCase {
 
     repo.save(board);
 
-    List<EventMessage<BoardCreatedEvent>> events = new ArrayList<>();
+    List<EventMessage<AxonBoardCreatedEvent>> events = new ArrayList<>();
     for (DomainEvent e: board.getDomainEventList()) {
       events.add(asEventMessage(e));
     }

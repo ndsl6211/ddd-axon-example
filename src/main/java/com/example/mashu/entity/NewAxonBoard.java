@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-@Aggregate(repository = "")
+//@Aggregate
 public class NewAxonBoard {
   private UUID id;
   private String teamId;

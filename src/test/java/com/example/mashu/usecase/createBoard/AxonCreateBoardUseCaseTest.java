@@ -45,8 +45,8 @@ public class AxonCreateBoardUseCaseTest extends TestAxonConfig {
   public void createBoard() {
     AxonBoardRepository repo = new AxonBoardRepository();
 
-    EventBus eventBus = SimpleEventBus.builder().build();
-    System.out.println(eventBus.getClass().getSimpleName());
+//    EventBus eventBus = SimpleEventBus.builder().build();
+    System.out.println(simpleEventBus.getClass().getSimpleName());
 
 //    DefaultConfigurer.defaultConfiguration().configureEventBus(configuration -> eventBus).start();
 
@@ -63,7 +63,7 @@ public class AxonCreateBoardUseCaseTest extends TestAxonConfig {
     );
     AxonCreateBoardUseCaseOutput output = new AxonCreateBoardUseCaseOutput();
 
-    AxonCreateBoardUseCase useCase = new AxonCreateBoardUseCase(repo, eventBus);
+    AxonCreateBoardUseCase useCase = new AxonCreateBoardUseCase(repo, simpleEventBus);
     useCase.execute(input, output);
 
     assertNotNull(output.getBoardId());

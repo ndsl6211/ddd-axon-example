@@ -1,4 +1,4 @@
-package com.example.mashu.usecase.createWorkflow;
-
-public class CreateWorkflowUseCaseReq {
-}
+//package com.example.mashu.usecase.createWorkflow;
+//
+//public class CreateWorkflowUseCaseReq {
+//}

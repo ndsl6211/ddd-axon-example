@@ -9,8 +9,9 @@ import org.springframework.context.annotation.Bean;
 
 @TestConfiguration
 public class TestAxonConfig {
-//  @Autowired
-//  public EventBus simpleEventBus;
+
+  @Autowired
+  public EventBus simpleEventBus;
 
   @Autowired
   public FakeEventHandler fakeEventHandler;
