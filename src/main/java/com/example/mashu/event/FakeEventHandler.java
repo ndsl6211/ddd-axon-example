@@ -10,6 +10,8 @@ public class FakeEventHandler {
   public UUID createdBoardId = null;
   public int counter = 0;
 
+  public FakeEventHandler() { }
+
   @EventHandler
   public void on(AxonBoardCreatedEvent event) {
     System.out.println("HI");

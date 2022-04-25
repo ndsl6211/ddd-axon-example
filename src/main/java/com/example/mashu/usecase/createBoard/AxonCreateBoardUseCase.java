@@ -22,13 +22,12 @@ import static org.axonframework.eventhandling.GenericEventMessage.asEventMessage
 
 public class AxonCreateBoardUseCase {
   private AxonBoardRepository repo;
-//  private EventBus eventBus;
-  private EventGateway gateway;
+  private EventBus eventBus;
 
-  public AxonCreateBoardUseCase(AxonBoardRepository repo, EventGateway gateway) {
+  public AxonCreateBoardUseCase(AxonBoardRepository repo, EventBus eventBus) {
     this.repo = repo;
 //    this.eventBus = eventBus;
-    this.gateway = gateway;
+    this.eventBus = eventBus;
   }
 
   public void execute(AxonCreateBoardUseCaseInput input, AxonCreateBoardUseCaseOutput output) {
@@ -41,19 +40,12 @@ public class AxonCreateBoardUseCase {
 
     repo.save(board);
 
-//    List<EventMessage<Object>> eventMessageList = board.getDomainEventList()
-//      .stream()
-//      .map(GenericEventMessage::asEventMessage)
-//      .toList();
-//
-//    eventBus.publish(eventMessageList);
-
     List<EventMessage<BoardCreatedEvent>> events = new ArrayList<>();
     for (DomainEvent e: board.getDomainEventList()) {
       events.add(asEventMessage(e));
     }
-//    eventBus.publish(events);
-    this.gateway.publish(new AxonBoardCreatedEvent(UUID.randomUUID(), "123", "123", "123", new Date()));
+    System.out.println("[in usecase]" + eventBus.getClass().getSimpleName());
+    eventBus.publish(events);
 
     output.setBoardId(board.getId());
   }

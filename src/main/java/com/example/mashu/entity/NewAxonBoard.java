@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-@Aggregate
+@Aggregate(repository = "")
 public class NewAxonBoard {
   private UUID id;
   private String teamId;
@@ -59,8 +59,4 @@ public class NewAxonBoard {
     return this.domainEventList;
   }
 
-  @EventHandler
-  public void on(AxonBoardCreatedEvent e) {
-    System.out.println("hey");
-  }
 }

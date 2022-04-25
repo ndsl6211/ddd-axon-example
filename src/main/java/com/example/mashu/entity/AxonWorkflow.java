@@ -3,7 +3,6 @@ package com.example.mashu.entity;
 import com.example.mashu.command.CommitWorkflowCommand;
 import com.example.mashu.command.CreateWorkflowCommand;
 import com.example.mashu.event.WorkflowCreatedEvent;
-import com.google.common.eventbus.EventBus;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventhandling.SimpleEventBus;
 import org.axonframework.eventsourcing.EventSourcingHandler;

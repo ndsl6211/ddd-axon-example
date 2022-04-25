@@ -40,6 +40,12 @@
 			<groupId>org.axonframework</groupId>
 			<artifactId>axon-spring-boot-starter</artifactId>
 			<version>4.5.9</version>
+<!--			<exclusions>-->
+<!--				<exclusion>  &lt;!&ndash; declare the exclusion here &ndash;&gt;-->
+<!--					<groupId>org.axonframework</groupId>-->
+<!--					<artifactId>axon-server-connector</artifactId>-->
+<!--				</exclusion>-->
+<!--			</exclusions>-->
 		</dependency>
 
 		<dependency>
@@ -51,12 +57,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.axonframework</groupId>
-			<artifactId>axon-spring-boot-starter</artifactId>
-			<version>4.5.8</version>
 		</dependency>
 
 		<dependency>
