@@ -43,7 +43,7 @@ public class AxonCreateBoardUseCase {
     for (DomainEvent e: board.getDomainEventList()) {
       events.add(asEventMessage(e));
     }
-    System.out.println("[in usecase]" + eventBus.getClass().getSimpleName());
+
     eventBus.publish(events);
 
     output.setBoardId(board.getId());

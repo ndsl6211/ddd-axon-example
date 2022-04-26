@@ -3,10 +3,8 @@ package com.example.mashu.usecase.createBoard;
 import com.example.mashu.TestAxonConfig;
 import com.example.mashu.usecase.repository.AxonBoardRepository;
 import org.junit.Test;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.UUID;
@@ -15,34 +13,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Import(TestAxonConfig.class)
 public class AxonCreateBoardUseCaseTest extends TestAxonConfig {
-
-//  class FakeEventListener implements Consumer<List<? extends EventMessage<?>>> {
-//    public UUID createdBoardId;
-//    public int counter = 0;
-//
-//    public void accept(List<? extends EventMessage<?>> e) {
-//      this.createdBoardId = ((AxonBoardCreatedEvent)(e.get(0).getPayload())).getBoardId();
-//      this.counter++;
-//    }
-//  }
-//
-
-  @AfterEach
-  public void tearDown() {
-
-  }
 
   @Test
   public void createBoard() {
     AxonBoardRepository repo = new AxonBoardRepository();
 
-    System.out.println(simpleEventBus.getClass().getSimpleName());
-
-//    FakeEventListener listener = new FakeEventListener();
-//    eventBus.subscribe(listener);
-//    FakeEventListener2 listener2 = new FakeEventListener2();
+//    System.out.println(simpleEventBus.getClass().getSimpleName());
 
     String teamId = UUID.randomUUID().toString();
     String userId = UUID.randomUUID().toString();
@@ -51,6 +28,7 @@ public class AxonCreateBoardUseCaseTest extends TestAxonConfig {
       "board name",
       userId
     );
+
     AxonCreateBoardUseCaseOutput output = new AxonCreateBoardUseCaseOutput();
 
     AxonCreateBoardUseCase useCase = new AxonCreateBoardUseCase(repo, simpleEventBus);
@@ -58,11 +36,7 @@ public class AxonCreateBoardUseCaseTest extends TestAxonConfig {
 
     assertNotNull(output.getBoardId());
     assertTrue(repo.getBoardById(output.getBoardId()).isPresent());
-
-//    assertNotNull(listener2.createdBoardId);
-//    assertEquals(1, listener2.counter);
-
-    assertNotNull(fakeEventHandler.createdBoardId);
-    assertEquals(1, fakeEventHandler.counter);
+    assertNotNull(fakeAxonBoardEventHandler.createdBoardId);
+    assertEquals(1, fakeAxonBoardEventHandler.counter);
   }
 }

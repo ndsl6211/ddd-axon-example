@@ -1,11 +1,10 @@
 package com.example.mashu;
 
-import com.example.mashu.event.FakeEventHandler;
+import com.example.mashu.usecase.eventHandler.FakeAxonBoardEventHandler;
+import com.example.mashu.usecase.eventHandler.FakeAxonWorkflowEventHandler;
 import org.axonframework.eventhandling.EventBus;
-import org.axonframework.eventhandling.SimpleEventBus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.context.annotation.Bean;
 
 @TestConfiguration
 public class TestAxonConfig {
@@ -14,7 +13,10 @@ public class TestAxonConfig {
   public EventBus simpleEventBus;
 
   @Autowired
-  public FakeEventHandler fakeEventHandler;
+  public FakeAxonBoardEventHandler fakeAxonBoardEventHandler;
+
+  @Autowired
+  public FakeAxonWorkflowEventHandler fakeAxonWorkflowEventHandler;
 
 //  @Bean
 //  public FakeEventHandler fakeEventHandler() {

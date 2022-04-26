@@ -1,6 +1,5 @@
 package com.example.mashu;
 
-import com.example.mashu.event.FakeEventHandler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
