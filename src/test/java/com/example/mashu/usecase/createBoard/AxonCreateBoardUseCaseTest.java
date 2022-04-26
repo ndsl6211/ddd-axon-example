@@ -1,7 +1,7 @@
 package com.example.mashu.usecase.createBoard;
 
 import com.example.mashu.TestAxonConfig;
-import com.example.mashu.usecase.repository.AxonBoardRepository;
+import com.example.mashu.adapter.repository.InMemoryAxonBoardRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,7 +17,7 @@ public class AxonCreateBoardUseCaseTest extends TestAxonConfig {
 
   @Test
   public void createBoard() {
-    AxonBoardRepository repo = new AxonBoardRepository();
+    InMemoryAxonBoardRepository repo = new InMemoryAxonBoardRepository();
 
 //    System.out.println(simpleEventBus.getClass().getSimpleName());
 

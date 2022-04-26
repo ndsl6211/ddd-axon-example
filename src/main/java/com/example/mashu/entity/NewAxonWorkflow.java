@@ -10,26 +10,22 @@ import java.util.UUID;
 
 public class NewAxonWorkflow {
     private UUID id;
-    private String teamId;
+//    private String teamId;
     private String boardId;
     private String workflowName;
-    private String userId;
+//    private String userId;
     private List<DomainEvent> domainEventList;
 
-    public NewAxonWorkflow(UUID id, String teamId, String boardId, String workflowName, String userId) {
+    public NewAxonWorkflow(UUID id, String boardId, String workflowName) {
         this.id = id;
-        this.teamId = teamId;
         this.boardId = boardId;
         this.workflowName = workflowName;
-        this.userId = userId;
 
         this.domainEventList = new ArrayList<>();
         this.addDomainEvent(new AxonWorkflowCreatedEvent(
                 this.id,
-                this.teamId,
                 this.boardId,
                 this.workflowName,
-                this.userId,
                 new Date()
         ));
     }
@@ -38,9 +34,9 @@ public class NewAxonWorkflow {
         return id;
     }
 
-    public String getTeamId() {
-        return teamId;
-    }
+//    public String getTeamId() {
+//        return teamId;
+//    }
 
     public String getBoardId() {
         return boardId;
@@ -50,9 +46,9 @@ public class NewAxonWorkflow {
         return workflowName;
     }
 
-    public String getUserId() {
-        return userId;
-    }
+//    public String getUserId() {
+//        return userId;
+//    }
 
     private void addDomainEvent(DomainEvent event) {
         this.domainEventList.add(event);

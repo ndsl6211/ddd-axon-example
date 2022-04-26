@@ -3,7 +3,7 @@ package com.example.mashu.usecase.createWorkflow;
 import com.example.mashu.entity.NewAxonWorkflow;
 import com.example.mashu.event.AxonWorkflowCreatedEvent;
 import com.example.mashu.event.DomainEvent;
-import com.example.mashu.usecase.repository.AxonWorkflowRepository;
+import com.example.mashu.adapter.repository.InMeomoryAxonWorkflowRepository;
 import org.axonframework.eventhandling.EventBus;
 import org.axonframework.eventhandling.EventMessage;
 
@@ -14,10 +14,10 @@ import java.util.UUID;
 import static org.axonframework.eventhandling.GenericEventMessage.asEventMessage;
 
 public class AxonCreateWorkflowUseCase {
-    private AxonWorkflowRepository repo;
+    private InMeomoryAxonWorkflowRepository repo;
     private EventBus eventBus;
 
-    public AxonCreateWorkflowUseCase(AxonWorkflowRepository repo, EventBus eventBus) {
+    public AxonCreateWorkflowUseCase(InMeomoryAxonWorkflowRepository repo, EventBus eventBus) {
         this.repo = repo;
         this.eventBus = eventBus;
     }
@@ -25,10 +25,8 @@ public class AxonCreateWorkflowUseCase {
     public void execute(AxonCreateWorkflowUseCaseInput input, AxonCreateWorkflowUseCaseOutput output) {
         NewAxonWorkflow workflow = new NewAxonWorkflow(
                 UUID.randomUUID(),
-                input.getTeamId(),
                 input.getBoardId(),
-                input.getWorkflowName(),
-                input.getUserId()
+                input.getWorkflowName()
         );
 
         repo.save(workflow);

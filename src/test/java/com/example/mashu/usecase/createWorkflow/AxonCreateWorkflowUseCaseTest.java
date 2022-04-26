@@ -1,7 +1,7 @@
 package com.example.mashu.usecase.createWorkflow;
 
 import com.example.mashu.TestAxonConfig;
-import com.example.mashu.usecase.repository.AxonWorkflowRepository;
+import com.example.mashu.adapter.repository.InMeomoryAxonWorkflowRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,16 +18,14 @@ public class AxonCreateWorkflowUseCaseTest extends TestAxonConfig {
 
     @Test
     public void createWorkflow() {
-        AxonWorkflowRepository repo = new AxonWorkflowRepository();
+        InMeomoryAxonWorkflowRepository repo = new InMeomoryAxonWorkflowRepository();
 
-        String teamId = UUID.randomUUID().toString();
-        String userId = UUID.randomUUID().toString();
+//        String teamId = UUID.randomUUID().toString();
+//        String userId = UUID.randomUUID().toString();
         String boardId = UUID.randomUUID().toString();
         AxonCreateWorkflowUseCaseInput input = new AxonCreateWorkflowUseCaseInput(
-                teamId,
                 boardId,
-                "workflow name",
-                userId
+                "workflow name"
         );
 
         AxonCreateWorkflowUseCaseOutput output = new AxonCreateWorkflowUseCaseOutput();

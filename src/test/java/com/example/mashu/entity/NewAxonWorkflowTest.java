@@ -15,10 +15,8 @@ public class NewAxonWorkflowTest {
         UUID workflowId = UUID.randomUUID();
         NewAxonWorkflow workflow = new NewAxonWorkflow(
                 workflowId,
-                "dummy_team_id",
                 "dummy_board_id",
-                "workflow name",
-                "dummy_user_id"
+                "workflow name"
         );
 
         assertEquals(1, workflow.getDomainEventList().size());

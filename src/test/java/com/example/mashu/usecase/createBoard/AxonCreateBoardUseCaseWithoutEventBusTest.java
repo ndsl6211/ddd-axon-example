@@ -1,7 +1,7 @@
 package com.example.mashu.usecase.createBoard;
 
 import com.example.mashu.event.AxonBoardCreatedEvent;
-import com.example.mashu.usecase.repository.AxonBoardRepository;
+import com.example.mashu.adapter.repository.InMemoryAxonBoardRepository;
 import org.axonframework.eventhandling.EventBus;
 import org.axonframework.eventhandling.EventMessage;
 import org.axonframework.eventhandling.SimpleEventBus;
@@ -27,7 +27,7 @@ public class AxonCreateBoardUseCaseWithoutEventBusTest {
 
     @Test
     public void createBoard() {
-        AxonBoardRepository repo = new AxonBoardRepository();
+        InMemoryAxonBoardRepository repo = new InMemoryAxonBoardRepository();
         EventBus eventBus = SimpleEventBus.builder().build();
 
         FakeEventListener listener = new FakeEventListener();

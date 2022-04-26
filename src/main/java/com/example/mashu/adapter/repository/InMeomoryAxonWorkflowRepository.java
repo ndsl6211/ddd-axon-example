@@ -1,6 +1,5 @@
-package com.example.mashu.usecase.repository;
+package com.example.mashu.adapter.repository;
 
-import com.example.mashu.entity.NewAxonBoard;
 import com.example.mashu.entity.NewAxonWorkflow;
 
 import java.util.HashMap;
@@ -8,10 +7,10 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
-public class AxonWorkflowRepository {
+public class InMeomoryAxonWorkflowRepository {
     private Map<UUID, NewAxonWorkflow> workflowMap;
 
-    public AxonWorkflowRepository() {
+    public InMeomoryAxonWorkflowRepository() {
         this.workflowMap = new HashMap<>();
     }
 
