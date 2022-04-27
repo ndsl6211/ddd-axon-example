@@ -6,8 +6,8 @@ import java.util.Date;
 import java.util.UUID;
 
 public class NewAxonWorkflow extends AggregateRoot {
-    private String boardId;
-    private String workflowName;
+    private final String boardId;
+    private final String workflowName;
 
     public NewAxonWorkflow(UUID id, String boardId, String workflowName) {
         super(id);
@@ -20,6 +20,12 @@ public class NewAxonWorkflow extends AggregateRoot {
             this.workflowName,
             new Date()
         ));
+    }
+
+    public NewAxonWorkflow(String id, String boardId, String workflowName) {
+        super(UUID.fromString(id));
+        this.boardId = boardId;
+        this.workflowName = workflowName;
     }
 
     public String getBoardId() {

@@ -3,10 +3,9 @@ package com.example.mashu.adapter.datamapper;
 import com.example.mashu.entity.NewAxonBoard;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -25,6 +24,14 @@ public class AxonBoardData {
   @Column(name = "user_id")
   private String userId;
 
+  @ElementCollection
+  @CollectionTable(
+    name = "board_workflow",
+    joinColumns = @JoinColumn(name = "board_id", referencedColumnName = "id")
+  )
+  @Column(name = "workflow_id")
+  private List<String> workflows = new ArrayList<>();
+
   public static AxonBoardData fromBoard(NewAxonBoard board) {
     AxonBoardData boardData = new AxonBoardData();
 
@@ -33,15 +40,18 @@ public class AxonBoardData {
     boardData.setTeamId(board.getTeamId());
     boardData.setUserId(board.getUserId());
 
+    boardData.setWorkflows(board.getWorkflowList());
+
     return boardData;
   }
 
   public static NewAxonBoard toBoard(AxonBoardData boardData) {
     return new NewAxonBoard(
-      boardData.getId(),
+      boardData.getId().toString(),
       boardData.getTeamId(),
       boardData.getBoardName(),
-      boardData.getUserId()
+      boardData.getUserId(),
+      boardData.getWorkflows()
     );
   }
 
@@ -61,6 +71,10 @@ public class AxonBoardData {
     return userId;
   }
 
+  public List<String> getWorkflows() {
+    return workflows;
+  }
+
   public void setId(UUID id) {
     this.id = id;
   }
@@ -73,7 +87,12 @@ public class AxonBoardData {
     this.boardName = boardName;
   }
 
+
   public void setUserId(String userId) {
     this.userId = userId;
+  }
+
+  public void setWorkflows(List<String> workflows) {
+    this.workflows = workflows;
   }
 }

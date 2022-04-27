@@ -9,6 +9,7 @@ public class NewAxonBoard extends AggregateRoot {
   private String teamId;
   private String name;
   private String userId;
+
   private List<String> workflowList;
 
   public NewAxonBoard(UUID id, String teamId, String name, String userId) {
@@ -27,6 +28,14 @@ public class NewAxonBoard extends AggregateRoot {
     ));
   }
 
+  public NewAxonBoard(String id, String teamId, String name, String userId, List<String> workflowList) {
+    super(UUID.fromString(id));
+    this.teamId = teamId;
+    this.name = name;
+    this.userId = userId;
+    this.workflowList = workflowList;
+  }
+
   public String getTeamId() {
     return teamId;
   }
@@ -37,6 +46,10 @@ public class NewAxonBoard extends AggregateRoot {
 
   public String getUserId() {
     return userId;
+  }
+
+  public List<String> getWorkflowList() {
+    return workflowList;
   }
 
   public void addWorkflow(String workflowId, int order) {
