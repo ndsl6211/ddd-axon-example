@@ -5,6 +5,7 @@ import com.example.mashu.adapter.repository.InMemoryAxonWorkflowRepository;
 import com.example.mashu.entity.NewAxonWorkflow;
 import com.example.mashu.usecase.repository.AxonWorkflowRepository;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -23,7 +24,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 public class AxonCreateWorkflowUseCaseTest extends SpringBootAxonConfig {
-
     @Test
     public void createWorkflow() {
         AxonWorkflowRepository repo = new InMemoryAxonWorkflowRepository();

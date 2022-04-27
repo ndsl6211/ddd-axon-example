@@ -5,6 +5,7 @@ import com.example.mashu.adapter.repository.InMemoryAxonBoardRepository;
 import com.example.mashu.entity.NewAxonBoard;
 import com.example.mashu.usecase.repository.AxonBoardRepository;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.runner.RunWith;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -20,7 +21,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 public class AxonCreateBoardUseCaseTest extends SpringBootAxonConfig {
-
   @Test
   public void createBoard() {
     AxonBoardRepository repo = new InMemoryAxonBoardRepository();

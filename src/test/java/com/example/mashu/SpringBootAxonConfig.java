@@ -7,19 +7,15 @@ import com.example.mashu.usecase.repository.AxonBoardRepository;
 import org.axonframework.eventhandling.EventBus;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
 public class SpringBootAxonConfig {
   @Autowired
   public EventBus simpleEventBus;
-
-  @Autowired
-  public AxonBoardRepository axonBoardRepository() {
-    return new InMemoryAxonBoardRepository();
-  }
 
   @Autowired
   public FakeAxonBoardEventHandler fakeAxonBoardEventHandler;
 
   @Autowired
   public FakeAxonWorkflowEventHandler fakeAxonWorkflowEventHandler;
+
+  public AxonBoardRepository boardRepo = new InMemoryAxonBoardRepository();
 }

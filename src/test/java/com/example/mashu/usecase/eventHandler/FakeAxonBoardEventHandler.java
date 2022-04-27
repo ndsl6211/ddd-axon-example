@@ -2,6 +2,7 @@ package com.example.mashu.usecase.eventHandler;
 
 import com.example.mashu.entity.event.AxonBoardCreatedEvent;
 import com.example.mashu.entity.event.AxonWorkflowCommitted;
+import com.example.mashu.entity.event.AxonWorkflowCreatedEvent;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,7 @@ public class FakeAxonBoardEventHandler {
 
   @EventHandler
   public void on(AxonBoardCreatedEvent event) {
+    System.out.println("axon board created event");
     this.createdBoardId = event.getBoardId().toString();
     this.counter++;
   }

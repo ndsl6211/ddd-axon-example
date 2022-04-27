@@ -10,7 +10,7 @@ import org.axonframework.eventhandling.EventHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class AxonBoardEventHandler {
   @Autowired
   private EventBus simpleEventBus;
@@ -18,13 +18,6 @@ public class AxonBoardEventHandler {
   @Autowired
   private AxonBoardRepository boardRepo;
 
-  public int i = 10;
-
-//  @Autowired
-//  public AxonBoardEventHandler(EventBus simpleEventBus, AxonBoardRepository boardRepo) {
-//    this.simpleEventBus = simpleEventBus;
-//    this.boardRepo = boardRepo;
-//  }
   public AxonBoardEventHandler() {
     System.out.println("constructor");
   }
