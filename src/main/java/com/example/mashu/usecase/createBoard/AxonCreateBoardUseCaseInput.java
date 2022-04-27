@@ -1,9 +1,5 @@
 package com.example.mashu.usecase.createBoard;
 
-import com.example.mashu.entity.NewAxonBoard;
-
-import java.util.UUID;
-
 public class AxonCreateBoardUseCaseInput {
   final private String teamId;
   final private String boardName;

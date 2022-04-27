@@ -1,31 +1,20 @@
 package com.example.mashu.entity;
 
 import com.example.mashu.event.AxonBoardCreatedEvent;
-import com.example.mashu.event.DomainEvent;
-import org.axonframework.eventhandling.AllowReplay;
-import org.axonframework.eventhandling.EventHandler;
-import org.axonframework.spring.stereotype.Aggregate;
-
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
-//@Aggregate
-public class NewAxonBoard {
-  private UUID id;
+public class NewAxonBoard extends AggregateRoot {
   private String teamId;
   private String name;
   private String userId;
-  private List<DomainEvent> domainEventList;
 
   public NewAxonBoard(UUID id, String teamId, String name, String userId) {
-    this.id = id;
+    super(id);
     this.teamId = teamId;
     this.name = name;
     this.userId = userId;
 
-    this.domainEventList = new ArrayList<>();
     this.addDomainEvent(new AxonBoardCreatedEvent(
       this.id,
       this.teamId,
@@ -33,10 +22,6 @@ public class NewAxonBoard {
       this.userId,
       new Date()
     ));
-  }
-
-  public UUID getId() {
-    return id;
   }
 
   public String getTeamId() {
@@ -50,13 +35,4 @@ public class NewAxonBoard {
   public String getUserId() {
     return userId;
   }
-
-  public void addDomainEvent(DomainEvent event) {
-    this.domainEventList.add(event);
-  }
-
-  public List<DomainEvent> getDomainEventList() {
-    return this.domainEventList;
-  }
-
 }

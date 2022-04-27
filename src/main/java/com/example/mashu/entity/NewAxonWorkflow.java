@@ -8,35 +8,24 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-public class NewAxonWorkflow {
-    private UUID id;
-//    private String teamId;
+public class NewAxonWorkflow extends AggregateRoot {
     private String boardId;
     private String workflowName;
-//    private String userId;
     private List<DomainEvent> domainEventList;
 
     public NewAxonWorkflow(UUID id, String boardId, String workflowName) {
-        this.id = id;
+        super(id);
         this.boardId = boardId;
         this.workflowName = workflowName;
 
         this.domainEventList = new ArrayList<>();
         this.addDomainEvent(new AxonWorkflowCreatedEvent(
-                this.id,
-                this.boardId,
-                this.workflowName,
-                new Date()
+            this.id,
+            this.boardId,
+            this.workflowName,
+            new Date()
         ));
     }
-
-    public UUID getId() {
-        return id;
-    }
-
-//    public String getTeamId() {
-//        return teamId;
-//    }
 
     public String getBoardId() {
         return boardId;
@@ -44,17 +33,5 @@ public class NewAxonWorkflow {
 
     public String getWorkflowName() {
         return workflowName;
-    }
-
-//    public String getUserId() {
-//        return userId;
-//    }
-
-    private void addDomainEvent(DomainEvent event) {
-        this.domainEventList.add(event);
-    }
-
-    public List<DomainEvent> getDomainEventList() {
-        return domainEventList;
     }
 }

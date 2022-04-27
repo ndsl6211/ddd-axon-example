@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public class MysqlAxonBoardRepository implements AxonBoardRepository {
 
-  final private MysqlAxonBoardRepositoryPeer peer;
+  private final MysqlAxonBoardRepositoryPeer peer;
 
   @Autowired
   public MysqlAxonBoardRepository(MysqlAxonBoardRepositoryPeer peer) {
@@ -18,9 +18,7 @@ public class MysqlAxonBoardRepository implements AxonBoardRepository {
   }
 
   public void save(NewAxonBoard board) {
-    AxonBoardData dataMapper = AxonBoardData.fromBoard(board);
-
-    this.peer.save(dataMapper);
+    this.peer.save(AxonBoardData.fromBoard(board));
   }
 
   public Optional<NewAxonBoard> getBoardById(UUID id) {

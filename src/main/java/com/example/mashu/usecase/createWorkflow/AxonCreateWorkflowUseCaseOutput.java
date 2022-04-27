@@ -5,8 +5,6 @@ import java.util.UUID;
 public class AxonCreateWorkflowUseCaseOutput {
     private UUID workflowId;
 
-    public AxonCreateWorkflowUseCaseOutput() {}
-
     public UUID getWorkflowId() {
         return this.workflowId;
     }

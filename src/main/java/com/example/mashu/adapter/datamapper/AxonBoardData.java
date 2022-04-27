@@ -26,22 +26,22 @@ public class AxonBoardData {
   private String userId;
 
   public static AxonBoardData fromBoard(NewAxonBoard board) {
-    AxonBoardData boardDataMapper = new AxonBoardData();
+    AxonBoardData boardData = new AxonBoardData();
 
-    boardDataMapper.setId(board.getId());
-    boardDataMapper.setBoardName(board.getName());
-    boardDataMapper.setTeamId(board.getTeamId());
-    boardDataMapper.setUserId(board.getUserId());
+    boardData.setId(board.getId());
+    boardData.setBoardName(board.getName());
+    boardData.setTeamId(board.getTeamId());
+    boardData.setUserId(board.getUserId());
 
-    return boardDataMapper;
+    return boardData;
   }
 
-  public static NewAxonBoard toBoard(AxonBoardData boardDataMapper) {
+  public static NewAxonBoard toBoard(AxonBoardData boardData) {
     return new NewAxonBoard(
-      boardDataMapper.getId(),
-      boardDataMapper.getTeamId(),
-      boardDataMapper.getBoardName(),
-      boardDataMapper.getUserId()
+      boardData.getId(),
+      boardData.getTeamId(),
+      boardData.getBoardName(),
+      boardData.getUserId()
     );
   }
 

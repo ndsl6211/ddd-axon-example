@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public class InMemoryAxonBoardRepository implements AxonBoardRepository {
-  private Map<UUID, NewAxonBoard> boardMap;
+  private final Map<UUID, NewAxonBoard> boardMap;
 
   public InMemoryAxonBoardRepository() {
     this.boardMap = new HashMap<>();

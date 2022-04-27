@@ -5,8 +5,6 @@ import java.util.UUID;
 public class AxonCreateBoardUseCaseOutput {
   private UUID boardId;
 
-  public AxonCreateBoardUseCaseOutput() {}
-
   public UUID getBoardId() {
     return this.boardId;
   }
