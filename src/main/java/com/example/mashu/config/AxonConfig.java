@@ -2,13 +2,10 @@ package com.example.mashu.config;
 
 import com.example.mashu.adapter.repository.MysqlAxonBoardRepository;
 import com.example.mashu.adapter.repository.MysqlAxonBoardRepositoryPeer;
-import com.example.mashu.entity.NewAxonBoard;
 import com.example.mashu.usecase.createBoard.AxonCreateBoardUseCase;
 import com.example.mashu.usecase.createBoard.AxonCreateBoardUseCaseInput;
 import com.example.mashu.usecase.createBoard.AxonCreateBoardUseCaseOutput;
 import com.example.mashu.usecase.repository.AxonBoardRepository;
-import feign.Client;
-import net.bytebuddy.build.Plugin;
 import org.axonframework.config.DefaultConfigurer;
 import org.axonframework.eventhandling.EventBus;
 import org.axonframework.eventhandling.SimpleEventBus;

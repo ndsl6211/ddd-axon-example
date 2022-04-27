@@ -1,6 +1,6 @@
 package com.example.mashu.entity;
 
-import com.example.mashu.event.DomainEvent;
+import com.example.mashu.entity.event.DomainEvent;
 
 import java.util.ArrayList;
 import java.util.List;

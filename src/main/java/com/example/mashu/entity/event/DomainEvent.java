@@ -1,4 +1,4 @@
-package com.example.mashu.event;
+package com.example.mashu.entity.event;
 
 import java.util.Date;
 import java.util.UUID;

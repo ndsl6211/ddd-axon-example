@@ -1,6 +1,6 @@
 package com.example.mashu.entity;
 
-import com.example.mashu.event.AxonBoardCreatedEvent;
+import com.example.mashu.entity.event.AxonBoardCreatedEvent;
 import org.junit.Test;
 
 import java.util.UUID;

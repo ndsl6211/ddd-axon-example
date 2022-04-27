@@ -17,10 +17,12 @@ public class MysqlAxonBoardRepository implements AxonBoardRepository {
     this.peer = peer;
   }
 
+  @Override
   public void save(NewAxonBoard board) {
     this.peer.save(AxonBoardData.fromBoard(board));
   }
 
+  @Override
   public Optional<NewAxonBoard> getBoardById(UUID id) {
     return this.peer.findById(id).map(AxonBoardData::toBoard);
   }

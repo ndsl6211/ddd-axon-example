@@ -1,7 +1,6 @@
 package com.example.mashu.usecase.eventHandler;
 
-import com.example.mashu.event.AxonBoardCreatedEvent;
-import com.example.mashu.event.AxonWorkflowCreatedEvent;
+import com.example.mashu.entity.event.AxonWorkflowCreatedEvent;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.stereotype.Component;
 

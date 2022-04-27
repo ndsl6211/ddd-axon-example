@@ -15,10 +15,12 @@ public class InMemoryAxonBoardRepository implements AxonBoardRepository {
     this.boardMap = new HashMap<>();
   }
 
+  @Override
   public void save(NewAxonBoard board) {
     this.boardMap.put(board.getId(), board);
   }
 
+  @Override
   public Optional<NewAxonBoard> getBoardById(UUID id) {
     return Optional.ofNullable(this.boardMap.get(id));
   }

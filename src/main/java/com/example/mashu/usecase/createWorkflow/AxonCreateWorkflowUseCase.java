@@ -1,23 +1,20 @@
 package com.example.mashu.usecase.createWorkflow;
 
 import com.example.mashu.entity.NewAxonWorkflow;
-import com.example.mashu.event.AxonWorkflowCreatedEvent;
-import com.example.mashu.event.DomainEvent;
-import com.example.mashu.adapter.repository.InMeomoryAxonWorkflowRepository;
+import com.example.mashu.entity.event.DomainEvent;
+import com.example.mashu.usecase.repository.AxonWorkflowRepository;
 import org.axonframework.eventhandling.EventBus;
 import org.axonframework.eventhandling.EventMessage;
+import org.axonframework.eventhandling.GenericEventMessage;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import static org.axonframework.eventhandling.GenericEventMessage.asEventMessage;
-
 public class AxonCreateWorkflowUseCase {
-    private InMeomoryAxonWorkflowRepository repo;
+    private AxonWorkflowRepository repo;
     private EventBus eventBus;
 
-    public AxonCreateWorkflowUseCase(InMeomoryAxonWorkflowRepository repo, EventBus eventBus) {
+    public AxonCreateWorkflowUseCase(AxonWorkflowRepository repo, EventBus eventBus) {
         this.repo = repo;
         this.eventBus = eventBus;
     }
@@ -31,12 +28,14 @@ public class AxonCreateWorkflowUseCase {
 
         repo.save(workflow);
 
-        List<EventMessage<AxonWorkflowCreatedEvent>> events = new ArrayList<>();
-        for (DomainEvent e: workflow.getDomainEventList()) {
-            events.add(asEventMessage(e));
-        }
+        List<EventMessage<DomainEvent>> events = workflow
+                .getDomainEventList()
+                .stream()
+                .map(GenericEventMessage::<DomainEvent>asEventMessage)
+                .toList();
 
         eventBus.publish(events);
+        workflow.clearDomainEvents();
 
         output.setWorkflowId(workflow.getId());
     }

@@ -1,6 +1,6 @@
 package com.example.mashu.usecase.createBoard;
 
-import com.example.mashu.event.AxonBoardCreatedEvent;
+import com.example.mashu.entity.event.AxonBoardCreatedEvent;
 import com.example.mashu.adapter.repository.InMemoryAxonBoardRepository;
 import org.axonframework.eventhandling.EventBus;
 import org.axonframework.eventhandling.EventMessage;
