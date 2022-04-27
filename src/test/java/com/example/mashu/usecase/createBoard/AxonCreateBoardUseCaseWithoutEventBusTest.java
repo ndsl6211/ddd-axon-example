@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AxonCreateBoardUseCaseWithoutEventBusTest {
 
-  class FakeEventListener implements Consumer<List<? extends EventMessage<?>>> {
+  class FakeEventHandler implements Consumer<List<? extends EventMessage<?>>> {
     public UUID createdBoardId;
     public int counter = 0;
 
@@ -30,7 +30,7 @@ public class AxonCreateBoardUseCaseWithoutEventBusTest {
         InMemoryAxonBoardRepository repo = new InMemoryAxonBoardRepository();
         EventBus eventBus = SimpleEventBus.builder().build();
 
-        FakeEventListener listener = new FakeEventListener();
+        FakeEventHandler listener = new FakeEventHandler();
         eventBus.subscribe(listener);
 
         String teamId = UUID.randomUUID().toString();
