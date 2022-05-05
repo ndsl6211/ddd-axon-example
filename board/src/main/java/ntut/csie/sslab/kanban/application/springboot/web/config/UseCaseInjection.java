@@ -1,6 +1,7 @@
 package ntut.csie.sslab.kanban.application.springboot.web.config;
 
 import ntut.csie.sslab.ddd.usecase.DomainEventBus;
+import ntut.csie.sslab.kanban.adapter.gateway.eventbus.google.PulsarNotifyBoardAdapter;
 import ntut.csie.sslab.kanban.usecase.board.BoardRepository;
 import ntut.csie.sslab.kanban.usecase.board.create.CreateBoardUseCase;
 import ntut.csie.sslab.kanban.usecase.board.create.CreateBoardUseCaseImpl;
@@ -143,6 +144,16 @@ public class UseCaseInjection {
     @Bean(name="renameLaneUseCase")
     public RenameLaneUseCase getRenameLaneUseCase() {
         return new RenameLaneUseCaseImpl(workflowRepository, eventBus);
+    }
+
+    @Bean(name="pulsarNotifyBoardAdapter")
+    public PulsarNotifyBoardAdapter pulsarNotifyBoardAdapter(PulsarNotifyBoard pulsarNotifyBoard) {
+        return new PulsarNotifyBoardAdapter(pulsarNotifyBoard);
+    }
+
+    @Bean(name="pulsarNotifyBoard")
+    public PulsarNotifyBoard pulsarNotifyBoard() {
+        return new PulsarNotifyBoard(boardRepository, eventBus);
     }
 
     @Autowired
