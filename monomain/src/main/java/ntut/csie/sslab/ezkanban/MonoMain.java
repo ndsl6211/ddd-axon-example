@@ -6,6 +6,7 @@ import ntut.csie.sslab.account.application.springboot.web.config.AccountEventBus
 import ntut.csie.sslab.ddd.usecase.DomainEventBus;
 import ntut.csie.sslab.kanban.adapter.gateway.eventbus.google.NotifyBoardAdapter;
 import ntut.csie.sslab.kanban.adapter.gateway.eventbus.google.NotifyWorkflowAdapter;
+import ntut.csie.sslab.kanban.adapter.gateway.eventbus.google.PulsarNotifyBoardAdapter;
 import ntut.csie.sslab.kanban.adapter.gateway.repository.springboot.board.BoardRepositoryPeer;
 import ntut.csie.sslab.kanban.application.springboot.web.EzKanbanWebMain;
 import ntut.csie.sslab.kanban.application.springboot.web.config.KanbanDataSourceConfiguration;
@@ -19,8 +20,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.core.task.SimpleAsyncTaskExecutor;
+import org.springframework.core.task.TaskExecutor;
 
 @ComponentScan(
         basePackages = {"ntut.csie.sslab.kanban", "ntut.csie.sslab.account", "ntut.csie.sslab.team","ntut.csie.sslab.ezkanban"}, excludeFilters = {
@@ -43,7 +47,22 @@ public class MonoMain extends SpringBootServletInitializer implements CommandLin
     private NotifyBoardAdapter notifyBoardAdapter;
     private NotifyWorkflowAdapter notifyWorkflowAdapter;
     private BoardRepositoryPeer boardRepositoryPeer;
-    
+    private PulsarNotifyBoardAdapter pulsarNotifyBoardAdapter;
+
+    @Bean(name="taskExecutor")
+    public TaskExecutor taskExecutor() {
+        return new SimpleAsyncTaskExecutor();
+    }
+
+    @Bean
+    public CommandLineRunner schedulingRunner(@Qualifier("taskExecutor") TaskExecutor executor) {
+        return new CommandLineRunner() {
+            public void run(String... args) throws Exception {
+                executor.execute(pulsarNotifyBoardAdapter);
+            }
+        };
+    }
+
     @Autowired
     public void setDomainEventBus(@Qualifier("kanbanEventBus") DomainEventBus domainEventBus) {
         this.domainEventBus = domainEventBus;
@@ -59,6 +78,9 @@ public class MonoMain extends SpringBootServletInitializer implements CommandLin
     public void setBoardRepositoryPeer(BoardRepositoryPeer boardRepositoryPeer) {
         this.boardRepositoryPeer = boardRepositoryPeer;
     }
+
+    @Autowired
+    public void setPulsarNotifyBoardAdapter(PulsarNotifyBoardAdapter pulsarNotifyBoardAdapter) {this.pulsarNotifyBoardAdapter = pulsarNotifyBoardAdapter; }
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {

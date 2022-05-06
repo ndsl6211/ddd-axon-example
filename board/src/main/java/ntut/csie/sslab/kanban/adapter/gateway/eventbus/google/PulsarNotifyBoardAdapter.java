@@ -32,6 +32,7 @@ public class PulsarNotifyBoardAdapter implements Runnable{
         Consumer consumer;
 
         try {
+            System.out.println("======!!!!!======");
             consumer = this.pulsarClient.newConsumer().topic("board").subscriptionName("board").subscribe();
         } catch (PulsarClientException e) {
             throw new RuntimeException(e);
