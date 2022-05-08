@@ -47,7 +47,7 @@ public class PulsarNotifyBoardAdapter implements Runnable{
 
                 String eventType = jsonNode.at("/eventType").textValue();
 
-                if (eventType.equals("BoardCreated")) {
+                if (eventType.equals("RemoteBoardCreated")) {
                     pulsarNotifyBoard.whenBoardCreated(remoteDomainEvent);
                 }
 

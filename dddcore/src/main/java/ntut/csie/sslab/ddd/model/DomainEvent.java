@@ -31,4 +31,8 @@ public abstract class DomainEvent implements Serializable {
 	public UUID id() {
 		return id;
 	}
+
+	public String toJsonString() {
+		return "";
+	}
 }

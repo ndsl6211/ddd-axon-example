@@ -63,10 +63,10 @@ public class Team extends AggregateRoot<TeamId> {
         }
     }
 
-    public void commitBoard(BoardId boardId, String boardName) {
+    public void commitBoard(BoardId boardId, String boardName, String userId) {
         Board board = new Board(boardId, this.getId(), defaultProject.getId(), boardName);
         defaultProject.addBoard(board);
-        addDomainEvent(new BoardCommittedToTeam(id, boardId, boardName));
+        addDomainEvent(new BoardCommittedToTeam(id, boardId, boardName, userId));
     }
 
     public void uncommitBoard(BoardId boardId) {
