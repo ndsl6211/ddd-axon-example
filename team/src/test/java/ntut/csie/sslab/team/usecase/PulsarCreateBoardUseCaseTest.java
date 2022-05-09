@@ -44,12 +44,4 @@ public class PulsarCreateBoardUseCaseTest {
 
 //        todo: assert BoardCreatedEvent should be produced
     }
-
-//    @Test
-//    public void test(){
-//
-//        BoardCommittedToTeam event = new BoardCommittedToTeam(TeamId.valueOf("TeamId"), BoardId.valueOf("BoardId"), "BoardName", "UserId");
-//
-//        System.out.println(event.toJsonString());
-//    }
 }

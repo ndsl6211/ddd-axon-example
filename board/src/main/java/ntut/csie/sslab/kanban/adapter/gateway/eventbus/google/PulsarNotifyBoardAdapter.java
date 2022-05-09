@@ -1,6 +1,5 @@
 package ntut.csie.sslab.kanban.adapter.gateway.eventbus.google;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ntut.csie.sslab.kanban.usecase.eventhandler.PulsarNotifyBoard;
@@ -9,9 +8,7 @@ import org.apache.pulsar.client.api.Message;
 import org.apache.pulsar.client.api.PulsarClient;
 import org.apache.pulsar.client.api.PulsarClientException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-//@Component
 public class PulsarNotifyBoardAdapter implements Runnable{
     private PulsarNotifyBoard pulsarNotifyBoard;
     private PulsarClient pulsarClient;
@@ -32,7 +29,6 @@ public class PulsarNotifyBoardAdapter implements Runnable{
         Consumer consumer;
 
         try {
-            System.out.println("======!!!!!======");
             consumer = this.pulsarClient.newConsumer().topic("board").subscriptionName("board").subscribe();
         } catch (PulsarClientException e) {
             throw new RuntimeException(e);
@@ -51,6 +47,7 @@ public class PulsarNotifyBoardAdapter implements Runnable{
                     pulsarNotifyBoard.whenBoardCreated(remoteDomainEvent);
                 }
 
+                consumer.acknowledge(message);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

@@ -19,6 +19,7 @@ public class TeamRepository {
     }
 
     public Optional<Team> getById(TeamId teamId) {
+        teamMap.get(teamId).clearDomainEvents();
         return Optional.ofNullable(teamMap.get(teamId));
     }
 }
